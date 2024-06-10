@@ -2,6 +2,8 @@ import "./Signup.css";
 import logo from "../../assets/react.svg";
 import eye from "../../assets/eye.png";
 import hidden from "../../assets/hidden.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -17,19 +19,36 @@ export default function Signup() {
   const [isConfimPasswordFocused, setIsConfirmPasswordFocused] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Conditions
-       1- Check if username exists in the database
-       2- Check if the password and confirm password are the same
-       3- Length of Password 8 characters at least
-     */
-    console.log("hello")
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    } else if (password.length < 8) {
+      toast.error('Password must be at least 8 characters long');
+      return;
+    }
+    fetch("http://localhost:8080/api/users/Register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: username, name: name, password: password }),
+    })
+    .then ((response) => {
+      if (response.ok) {
+        console.log("helloworld");
+      } else {
+        console.log("yarab");
+      }
+    })
   };
 
   return (
     <div className="signup-allcontainer">
+      <ToastContainer />
       <img src={logo} alt="Company Logo" className="signup-RotatorLogo" />
       <div className="signup-container">
         <h1>Sign up</h1>
@@ -83,7 +102,7 @@ export default function Signup() {
           </div>
           <div className={`signup-input-group ${isConfimPasswordFocused || confirmPassword ? 'focused' : ''}`}>
             <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               id="confirmpassword"
               name="confirmpassword"
               value={confirmPassword}
@@ -93,6 +112,13 @@ export default function Signup() {
               required
             />
             <label htmlFor='password'>Confirm Password</label>
+            <img
+              src={showConfirmPassword? hidden : eye}
+              alt="Toggle Password Visibility"
+              className="signup-eye-icon-Password"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              title={showConfirmPassword? "Hide Password" : "Show Password"}
+            />
           </div>
           <button type='submit'>Sign up</button>
         </form>
