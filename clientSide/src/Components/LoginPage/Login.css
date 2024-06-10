@@ -1,0 +1,119 @@
+.login-allcontainer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-RotatorLogo{
+  position: fixed;
+  top: -10%;
+  left: -500px;
+  transform: translateX(-50%);
+  opacity: 0.6;
+  width: 1000px;
+  z-index: 0;
+  height: auto;
+  animation: rotateLogo 5s linear infinite;
+}
+
+@keyframes rotateLogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-container {
+  z-index: 1;
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 20%;
+  min-width: 400px;
+}
+
+.login-container h1 {
+  color: #333333;
+}
+
+.login-input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.login-input-group input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login-input-group label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #555;
+  transition: all 0.2s;
+  pointer-events: none;
+  background-color: #fff;
+  padding: 0 5px;
+}
+
+.login-input-group input:focus + label,
+.login-input-group.focused label {
+  top: -10px;
+  left: 10px;
+  color: #007bff;
+  font-size: 12px;
+}
+
+.login-eye-icon-Password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: auto;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  color: #0056b3;
+}
+
+.login-container a:visited,
+.login-container a:focus,
+.login-container a:active {
+  color: #007bff;
+}
