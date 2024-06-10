@@ -20,7 +20,12 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Hello World");
+    /* Conditions
+       1- Check if username exists in the database
+       2- Check if the password and confirm password are the same
+       3- Length of Password 8 characters at least
+     */
+    console.log("hello")
   };
 
   return (
