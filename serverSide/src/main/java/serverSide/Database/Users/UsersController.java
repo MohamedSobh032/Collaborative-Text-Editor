@@ -23,17 +23,17 @@ public class UsersController {
 
     @PostMapping("/Register")
     public ResponseEntity<String> Register(@RequestBody Map<String, String> body) {
-        System.out.println("hello");
         String username = body.get("username");
         try {
             if (usersService.checkUserExists(username)) {
-                return new ResponseEntity<>("User with this username exists", HttpStatus.OK);
+                return new ResponseEntity<>("User with this username exists", HttpStatus.NOT_ACCEPTABLE);
             }
             String name = body.get("name");
             String password = body.get("password");
             usersService.addUser(username, name, password);
             return new ResponseEntity<>("User created", HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

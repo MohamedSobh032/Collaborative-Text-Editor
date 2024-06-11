@@ -5,9 +5,12 @@ import hidden from "../../assets/hidden.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
+
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,10 +41,13 @@ export default function Signup() {
       body: JSON.stringify({ username: username, name: name, password: password }),
     })
     .then ((response) => {
-      if (response.ok) {
-        console.log("helloworld");
-      } else {
-        console.log("yarab");
+      if (response.status === 406) { // NOT ACCEPTABLE
+        setUsername('');
+        toast.error("Username already exists");
+      } else if (response.status === 201) { // CREATED
+        navigate('/login', { state: { accountCreated: true } });
+      } else if (response.status === 400) { // BAD REQUEST
+        toast.error("Could not connect to server, try again later");
       }
     })
   };
