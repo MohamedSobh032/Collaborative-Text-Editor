@@ -20,7 +20,7 @@ function App() {
           <Route path='/' element={<Login setUser={ChangeCommonUser}/>} />
           <Route path='/Login' element={<Login setUser={ChangeCommonUser}/>} />
           <Route path='/Signup' element={<Signup />} />
-          <Route path='/Documents' element={<Documents user={user}/>} />
+          <Route path='/Documents' element={<Documents setUser={ChangeCommonUser} user={user}/>} />
         </Routes>
       </Router>
     </>
