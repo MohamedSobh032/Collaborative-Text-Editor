@@ -1,13 +1,16 @@
 import './Login.css'
+
 import logo from '../../assets/react.svg'
 import eye from '../../assets/eye.png'
 import hidden from '../../assets/hidden.png'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
 
   const location = useLocation();
 
@@ -27,9 +30,36 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Hello World');
+    if (password.length < 8) {
+      toast.error("Wrong password, please try again")
+      return;
+    }
+    fetch("http://localhost:8080/api/users/Login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: username, password: password }),
+    })
+    .then((response) => {
+      return response.json().then((data) => {
+        if (response.status === 406) {
+          toast.error("Wrong username or password, please try again");
+        } else if (response.status === 400) {
+          toast.error("Could not connect to server, please try again later");
+        } else if (response.status === 200) {
+          return data;
+        } else {
+          throw new Error("Unexpected error");
+        }
+      })
+    })
+    .then((user) => {
+      if (user) {
+        // Connect Here
+      }
+    })
   }
-
 
   return (
     <div className='login-allcontainer'>

@@ -1,9 +1,12 @@
 import "./Signup.css";
+
 import logo from "../../assets/react.svg";
 import eye from "../../assets/eye.png";
 import hidden from "../../assets/hidden.png";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -47,7 +50,7 @@ export default function Signup() {
       } else if (response.status === 201) { // CREATED
         navigate('/login', { state: { accountCreated: true } });
       } else if (response.status === 400) { // BAD REQUEST
-        toast.error("Could not connect to server, try again later");
+        toast.error("Could not connect to server, please try again later");
       }
     })
   };

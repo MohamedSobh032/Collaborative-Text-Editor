@@ -16,11 +16,6 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "hello world";
-    }
-
     @PostMapping("/Register")
     public ResponseEntity<String> Register(@RequestBody Map<String, String> body) {
         String username = body.get("username");
@@ -33,8 +28,22 @@ public class UsersController {
             usersService.addUser(username, name, password);
             return new ResponseEntity<>("User created", HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/Login")
+    public ResponseEntity<Users> Login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
+        try {
+            Users response = usersService.loginUser(username, password);
+            if (response == null) {
+                return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            }
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
