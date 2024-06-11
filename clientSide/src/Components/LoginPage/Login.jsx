@@ -10,9 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
-export default function Login(props) {
+export default function Login({setUser}) {
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,21 +43,24 @@ export default function Login(props) {
       body: JSON.stringify({ username: username, password: password }),
     })
     .then((response) => {
-      return response.json().then((data) => {
-        if (response.status === 406) {
-          toast.error("Wrong username or password, please try again");
-        } else if (response.status === 400) {
-          toast.error("Could not connect to server, please try again later");
-        } else if (response.status === 200) {
-          return data;
-        } else {
-          throw new Error("Unexpected error");
-        }
-      })
+      if (response.status === 406) {
+        toast.error("Wrong username or password, please try again");
+      } else if (response.status === 400) {
+        toast.error("Could not connect to server, please try again later");
+      } else if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error("Unexpected error");
+      }
     })
     .then((user) => {
       if (user) {
-        // Connect Here
+        setUser({
+          "username": user.username,
+          "name": user.name,
+          "password": user.password
+        });
+        navigate("/Documents");
       }
     })
   }
@@ -108,4 +112,5 @@ export default function Login(props) {
       </div>
     </div>
   );
+
 }
