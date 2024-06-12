@@ -12,3 +12,105 @@
     box-sizing: border-box;
     border-radius: 15px;
 }
+
+.changeprofile-header {
+    display: flex;
+}
+
+.changeprofile-header h2 {
+    padding-left: 5px;
+}
+
+.changeprofile-header button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    transform: translateX(40px) translateY(-23px);
+}
+
+.changeprofile-header button:hover {
+    background-color: #d32f2f;
+}
+
+.changeprofile-input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+  
+.changeprofile-input-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+  
+.changeprofile-input-group label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #555;
+    transition: all 0.2s;
+    pointer-events: none;
+    background-color: #fff;
+    padding: 0 5px;
+}
+  
+.changeprofile-input-group input:focus + label,
+.changeprofile-input-group.focused label {
+    top: -10px;
+    left: 10px;
+    color: #007bff;
+    font-size: 12px;
+}
+
+.changeprofile-eye-icon-Password {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+}
+
+.changeprofile-container form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.changeprofile-container form button::before {
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    content: 'Change Settings';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+  
+.changeprofile-container form button:hover::before {
+    opacity: 1;
+}

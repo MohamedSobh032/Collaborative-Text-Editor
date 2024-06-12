@@ -47,4 +47,20 @@ public class UsersController {
         }
     }
 
+    @PostMapping("/ChangeSettings")
+    public ResponseEntity<String> ChangeSettings(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
+        String name = body.get("name");
+        try {
+            boolean response = usersService.ChangeProfile(username, name, password);
+            if (response) {
+                return new ResponseEntity<>("Profile updated", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Profile not updated", HttpStatus.NOT_ACCEPTABLE);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

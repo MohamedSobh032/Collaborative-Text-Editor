@@ -25,4 +25,13 @@ public class UsersService {
         return user;
     }
 
+    public boolean ChangeProfile(String username, String name, String password) {
+        Users user = usersRepository.findByUsername(username);
+        if (user == null) { return false; }
+        user.setName(name);
+        user.setPassword(password);
+        usersRepository.save(user);
+        return true;
+    }
+
 }

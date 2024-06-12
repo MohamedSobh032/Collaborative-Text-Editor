@@ -1,5 +1,6 @@
 import './Navbar.css'
 
+
 import Icon from '../../../../assets/NavbarIcon.png'
 
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +23,7 @@ export default function Navbar(props) {
 
   return (
     <div className='Navbar-Container'>
-      <img src={Icon}/>
+      <img className='Navbar-Icon'src={Icon}/>
       <h1>Collaborative Text Editor</h1>
       <ul>
         <li onClick={() => {setShowProfile(!showProfile)}}>Profile</li>
@@ -50,8 +51,8 @@ export default function Navbar(props) {
           username={props.username}
           password={props.password}
           setName={props.setName}
-          setUsername={props.setUsername}
           setPassword={props.setPassword}
+          setChangeProfile={setShowChange}
         />
       }
     </div>

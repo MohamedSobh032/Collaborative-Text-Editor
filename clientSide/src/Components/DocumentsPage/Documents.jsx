@@ -16,7 +16,6 @@ export default function Documents(props) {
                 username={username}
                 password={password}
                 setName={setName}
-                setUsername={setUsername}
                 setPassword={setPassword}
                 setUser={props.setUser}
             />
