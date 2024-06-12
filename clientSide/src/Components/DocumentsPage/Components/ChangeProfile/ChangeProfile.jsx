@@ -26,16 +26,18 @@ export default function ChangeProfile(props) {
             toast.error("Wrong password, please try again");
             setPassword('');
             return;
-        } else if (newPassword.length < 8) {
+        } else if (newPassword !== '' && newPassword.length < 8) {
             toast.error("Password must be at least 8 characters long");
             return;
         } else {
+            let userSent = (name === '') ? props.name : name;
+            let passSent = (newPassword === '') ? props.password : newPassword;
             fetch("http://localhost:8080/api/users/ChangeSettings", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: props.username, name: name, password: newPassword }),
+                body: JSON.stringify({ username: props.username, name: userSent, password: passSent }),
             })
             .then((response) => {
                 if (response.status === 406) {
@@ -43,8 +45,7 @@ export default function ChangeProfile(props) {
                 } else if (response.status === 400) {
                   toast.error("Could not connect to server, please try again later");
                 } else if (response.status === 200) {
-                    props.setName(name);
-                    props.setPassword(newPassword);
+                    props.setName(userSent);
                     props.setChangeProfile(false);
                 } else {
                   throw new Error("Unexpected error");

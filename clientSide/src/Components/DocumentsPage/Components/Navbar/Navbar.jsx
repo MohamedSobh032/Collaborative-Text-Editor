@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 import ProfileCard from '../ProfileCard/ProfileCard'
 import ChangeProfile from '../ChangeProfile/ChangeProfile';
+import DeleteAccount from '../DeleteAccount/DeleteAccount'
 
 export default function Navbar(props) {
 
@@ -15,6 +16,7 @@ export default function Navbar(props) {
 
   const [showProfile, setShowProfile] = useState(false);
   const [showChange, setShowChange] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   function handleLogout() {
     props.setUser({});
@@ -31,7 +33,7 @@ export default function Navbar(props) {
           Settings
           <ul>
             <li onClick={() => {setShowChange(!showChange)}}>Change Profile</li>
-            <li>Delete my Account</li>
+            <li onClick={() => {setShowDelete(!showDelete)}}>Delete my Account</li>
           </ul>
         </li>
         <li onClick={handleLogout}>Logout</li>
@@ -51,8 +53,15 @@ export default function Navbar(props) {
           username={props.username}
           password={props.password}
           setName={props.setName}
-          setPassword={props.setPassword}
           setChangeProfile={setShowChange}
+        />
+      }
+      {showDelete &&
+        <DeleteAccount
+          username={props.username}
+          password={props.password}
+          setUser={props.setUser}
+          setShowDelete={setShowDelete}
         />
       }
     </div>

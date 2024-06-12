@@ -25,7 +25,9 @@ export default function Login({setUser}) {
 
   useEffect(() => {
     if (location.state && location.state.accountCreated) {
-      toast.success("Account created successfully");
+      toast.success("Account Created Successfully");
+    } else if (location.state && location.state.accountDeleted) {
+      toast.success("Account Deleted Successfully")
     }
   }, [location.state])
 

@@ -1,4 +1,4 @@
-.changeprofile-container {
+.deleteaccount-container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -8,22 +8,28 @@
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    width: 300px;
+    width: 400px;
     box-sizing: border-box;
     border-radius: 15px;
 }
 
-.changeprofile-header {
+.deleteaccount-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.changeprofile-header h2 {
+.deleteaccount-header h2 {
     padding-left: 5px;
+    text-wrap: nowrap;
 }
 
-.changeprofile-header button {
+.deleteaccount-container p {
+    color: #0056b3;
+    padding-left: 30px;
+}
+
+.deleteaccount-header button {
     background-color: #f44336;
     color: white;
     border: none;
@@ -35,24 +41,24 @@
     width: 30px;
 }
 
-.changeprofile-header button:hover {
+.deleteaccount-header button:hover {
     background-color: #d32f2f;
 }
 
-.changeprofile-input-group {
+.deleteaccount-input-group {
     position: relative;
     margin-bottom: 15px;
 }
-  
-.changeprofile-input-group input {
+
+.deleteaccount-input-group input {
     width: 95%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
 }
-  
-.changeprofile-input-group label {
+
+.deleteaccount-input-group label {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -63,25 +69,25 @@
     padding: 0 5px;
 }
   
-.changeprofile-input-group input:focus + label,
-.changeprofile-input-group.focused label {
+.deleteaccount-input-group input:focus + label,
+.deleteaccount-input-group.focused label {
     top: -10px;
     left: 10px;
     color: #007bff;
     font-size: 12px;
 }
 
-.changeprofile-eye-icon-Password {
+.deleteaccount-eye-icon-Password {
     position: absolute;
     top: 50%;
-    right: 0px;
+    right: 5px;
     transform: translateY(-50%);
     cursor: pointer;
     width: 20px;
     height: auto;
 }
 
-.changeprofile-container form button {
+.deleteaccount-container form button {
     width: 100%;
     padding: 10px;
     border: none;
@@ -93,11 +99,11 @@
     position: relative;
 }
 
-.changeprofile-container form button::before {
+.deleteaccount-container form button::before {
     font-size: 16px;
     display: grid;
     place-items: center;
-    content: 'Change Settings';
+    content: 'Delete Account';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -109,6 +115,6 @@
     transition: opacity 1s;
 }
   
-.changeprofile-container form button:hover::before {
+.deleteaccount-container form button:hover::before {
     opacity: 1;
 }

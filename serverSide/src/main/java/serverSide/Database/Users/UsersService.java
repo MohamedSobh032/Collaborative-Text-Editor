@@ -34,4 +34,8 @@ public class UsersService {
         return true;
     }
 
+    public void DeleteUser(String username) {
+        usersRepository.deleteByUsername(username);
+    }
+
 }
