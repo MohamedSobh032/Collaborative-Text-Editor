@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #007bff; /*linear-gradient(135deg, , #0056b3); */
+    background: #007bff;
     padding: 20px 30px;
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -41,6 +41,29 @@
 .Navbar-Container ul li:hover {
     color: #06295c;
     text-decoration: underline;
+}
+
+.Navbar-Container ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 10px 0;
+    z-index: 1;
+}
+
+.Navbar-Container ul li:hover ul {
+    display: block;
+}
+
+.Navbar-Container ul li ul li {
+    background-color: white;
+    display: block;
+    padding: 10px 20px;
+    white-space: nowrap;
+    border-radius: 2px;
+    color: #007bff;
 }
 
 .Navbar-Container h2 {

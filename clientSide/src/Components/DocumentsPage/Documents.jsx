@@ -1,19 +1,25 @@
 import './Documents.css'
 import Navbar from './Components/Navbar/Navbar'
 
-
+import { useState } from 'react'
 
 export default function Documents(props) {
+
+    const [name, setName] = useState(props.user.name);
+    const [username, setUsername] = useState(props.user.username);
+    const [password, setPassword] = useState(props.user.password);
 
     return (
         <div>
             <Navbar
-                name={props.user.name}
-                username={props.user.username}
-                password={props.user.password}
+                name={name}
+                username={username}
+                password={password}
+                setName={setName}
+                setUsername={setUsername}
+                setPassword={setPassword}
                 setUser={props.setUser}
             />
-            <h1>Hello {props.user.name}</h1>
         </div>
     )
 }
