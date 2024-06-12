@@ -1,6 +1,9 @@
 import './Documents.css'
 import Navbar from './Components/Navbar/Navbar'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useState } from 'react'
 
 export default function Documents(props) {
@@ -9,6 +12,7 @@ export default function Documents(props) {
 
     return (
         <div>
+            <ToastContainer />
             <Navbar
                 name={name}
                 username={props.user.username}
@@ -16,6 +20,7 @@ export default function Documents(props) {
                 setName={setName}
                 setUser={props.setUser}
             />
+            <button onClick={() => {toast.success("hello")}}>hello</button>
         </div>
     )
 }

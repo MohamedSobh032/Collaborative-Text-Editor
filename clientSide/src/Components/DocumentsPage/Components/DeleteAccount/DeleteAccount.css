@@ -58,6 +58,10 @@
     outline: none;
 }
 
+.deleteaccount-input-group input:focus {
+    border-color: #007bff;
+}
+
 .deleteaccount-input-group label {
     position: absolute;
     top: 10px;

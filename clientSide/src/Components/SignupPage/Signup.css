@@ -58,6 +58,10 @@
   border-radius: 5px;
   outline: none;
 }
+  
+.signup-input-group input:focus {
+  border-color: #007bff;
+}
 
 .signup-input-group label {
   position: absolute;
