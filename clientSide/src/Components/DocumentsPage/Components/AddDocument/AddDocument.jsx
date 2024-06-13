@@ -23,13 +23,22 @@ export default function AddDocument(props) {
             if (response.status === 406) {
                 props.toast.error("There is something wrong with our server, please try again");
             } else if (response.status === 200) {
-                props.toast.success("Document Added Successfully");
-                props.setDocuments(prevDocs => [...prevDocs, {title: title, description: description, accessType: 'OWNER'}]);
-                props.setShowAdd(false);
+                return response.json();
             } else {
                 throw new Error("Unexpected error");
             }
         })
+        .then(data => {
+            props.toast.success("Document Added Successfully");
+            console.log(data.documentId);
+            props.setDocuments(prevDocs => [...prevDocs,
+                    {title: title, description: description, accessType: 'OWNER', documentId: data.documentId}]);
+            props.setShowAdd(false);
+        })
+        .catch(error => {
+            console.error("Error adding document:", error);
+            props.toast.error("Failed to add document. Please try again.");
+        });
     }
 
     return (

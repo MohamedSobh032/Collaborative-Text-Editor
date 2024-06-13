@@ -49,22 +49,39 @@ public class MixedController {
         }
     }
 
-    @PostMapping("DeleteDocument")
+    @PostMapping("/DeleteDocument")
     public ResponseEntity<String> DeleteDocument(@RequestBody Map<String, String> body) {
-        ObjectId documentId = new ObjectId(body.get("documentId"));
+        String docId = body.get("documentId");
+        ObjectId documentId;
+        if (docId != null) {
+            documentId = new ObjectId(docId);
+        } else {
+            return new ResponseEntity<>("CANNOT", HttpStatus.NOT_ACCEPTABLE);
+        }
+        try {
+            userDocumentsService.deleteDocument(documentId);
+            documentsService.deleteDocument(documentId);
+            return new ResponseEntity<>("Document deleted", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/AddDocument")
-    public ResponseEntity<String> AddDocument(@RequestBody Map<String, String> body) {
+    public ResponseEntity<Map<String, Object>> AddDocument(@RequestBody Map<String, String> body) {
         String documentTitle = body.get("title");
         String documentDescription = body.get("description");
         String username = body.get("username");
         try {
             ObjectId id = documentsService.addDocument(documentTitle, documentDescription);
             userDocumentsService.addDocumentWithOwner(id, username);
-            return new ResponseEntity<>("Document added", HttpStatus.OK);
+            Map<String, Object> response = new HashMap<>();
+            response.put("documentId", id.toString());
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
 

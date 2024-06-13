@@ -42,4 +42,8 @@ public class UserDocumentsService {
             userDocumentsRepository.save(userDocuments);
         }
     }
+
+    public void deleteDocument(ObjectId documentId) {
+        userDocumentsRepository.deleteByDocumentId(documentId);
+    }
 }

@@ -17,7 +17,21 @@ export default function DocumentCard(props) {
     const [title, setTitle] = useState(props.title); 
     
     function handleDelete() {
-        
+        fetch("http://localhost:8080/api/mixed/DeleteDocument", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({documentId: props.documentId})
+        })
+        .then((response) => {
+            if (response.status === 400) {
+                props.toast.error("Could not connect to server, please try again later");
+            } else if (response.status === 200) {
+                props.toast.success("Document Deleted Successfully");
+                props.setDocuments(prevDocs => (prevDocs.filter(doc => doc.documentId !== props.documentId)));
+            }
+        })
     }
 
     return (
@@ -46,7 +60,7 @@ export default function DocumentCard(props) {
                             <div className='documentcard-dropdown-content'>
                                 <span onClick={() => {setShowRename(!showRename); setToggleDropdown(!toggleDropdown)}}>Rename Document</span>
                                 <span onClick={() => {setShowShare(!showShare); setToggleDropdown(!toggleDropdown)}}>Share Document</span>
-                                <span>Delete Document</span>
+                                <span onClick={handleDelete}>Delete Document</span>
                             </div>
                         )}
                     </div>

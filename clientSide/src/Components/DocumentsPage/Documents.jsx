@@ -46,8 +46,8 @@ export default function Documents(props) {
                     {documents.filter(document => document.accessType === 'OWNER').length === 0 ?
                         (<h2 className='no-documents'>No Documents Available</h2>)
                             :
-                        (documents.filter(document => document.accessType === 'OWNER').map((document, key) => (
-                            <div key={key}>
+                        (documents.filter(document => document.accessType === 'OWNER').map((document) => (
+                            <div key={document.documentId}>
                                 <DocumentCard
                                     username={props.user.username}
                                     title={document.title}
@@ -67,8 +67,8 @@ export default function Documents(props) {
                     {documents.filter(document => document.accessType !== 'OWNER').length === 0 ?
                         (<h2 className='no-documents'>No Documents Available</h2>)
                             :
-                        (documents.filter(document => document.accessType !== 'OWNER').map((document, key) => (
-                            <div key={key}>
+                        (documents.filter(document => document.accessType !== 'OWNER').map((document) => (
+                            <div key={document.documentId}>
                                 <DocumentCard
                                     username={props.user.username}
                                     title={document.title}
