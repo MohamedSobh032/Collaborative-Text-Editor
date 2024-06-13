@@ -1,6 +1,5 @@
 package serverSide.Database.Documents;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +17,8 @@ public class DocumentsController {
 
     @PostMapping("/RenameDocument")
     public ResponseEntity<String> RenameDocument(@RequestBody Map<String, String> body) {
-        System.out.println("RenameDocument");
         String documentTitle = body.get("documentTitle");
-        System.out.println(documentTitle);
         String documentId = body.get("documentId");
-        System.out.println(documentId);
         try {
             if (documentsService.updateDocument(documentId, documentTitle)) {
                 return new ResponseEntity<>("Documents successfully updated", HttpStatus.OK);

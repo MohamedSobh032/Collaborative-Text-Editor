@@ -1,5 +1,6 @@
 import './DocumentCard.css'
 import RenameDocument from '../RenameDocument/RenameDocument'
+import ShareDocument from '../ShareDocument/ShareDocument'
 
 import ThreeDots from '../../../../assets/dots.png'
 import eye from '../../../../assets/eye.png'
@@ -11,9 +12,14 @@ export default function DocumentCard(props) {
     const [toggleDropdown, setToggleDropdown] = useState(false);
 
     const [showRename, setShowRename] = useState(false);
+    const [showShare, setShowShare] = useState(false);
 
     const [title, setTitle] = useState(props.title); 
     
+    function handleDelete() {
+        
+    }
+
     return (
         <div>
         <div className='documentcard-container'>
@@ -39,7 +45,7 @@ export default function DocumentCard(props) {
                         {toggleDropdown && (
                             <div className='documentcard-dropdown-content'>
                                 <span onClick={() => {setShowRename(!showRename); setToggleDropdown(!toggleDropdown)}}>Rename Document</span>
-                                <span>Share Document</span>
+                                <span onClick={() => {setShowShare(!showShare); setToggleDropdown(!toggleDropdown)}}>Share Document</span>
                                 <span>Delete Document</span>
                             </div>
                         )}
@@ -55,6 +61,14 @@ export default function DocumentCard(props) {
                 documentId={props.documentId}
                 setDocuments={props.setDocuments}
                 setTitle={setTitle}
+                toast={props.toast}
+            />
+        }
+        {showShare &&
+            <ShareDocument
+                setShowShare={setShowShare}
+                documentId={props.documentId}
+                username={props.username}
                 toast={props.toast}
             />
         }

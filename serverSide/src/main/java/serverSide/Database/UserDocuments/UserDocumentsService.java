@@ -30,4 +30,16 @@ public class UserDocumentsService {
     public List<UserDocuments> getUserDocuments(String username) {
         return userDocumentsRepository.findByUsername(username);
     }
+
+    public void shareDocument(String documentId, String username, AccessType accessType) {
+        ObjectId docId = new ObjectId(documentId);
+        UserDocuments userDocuments = userDocumentsRepository.findByDocumentIdAndUsername(docId, username);
+        if (userDocuments == null) {
+            UserDocuments newItem = new UserDocuments(docId, username, accessType);
+            userDocumentsRepository.save(newItem);
+        } else {
+            userDocuments.setAccessType(accessType);
+            userDocumentsRepository.save(userDocuments);
+        }
+    }
 }

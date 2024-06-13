@@ -9,4 +9,5 @@ public interface UserDocumentsRepository extends MongoRepository<UserDocuments, 
     void deleteByUsername(String username);
     void deleteByDocumentId(ObjectId documentId);
     List<UserDocuments> findByUsername(String username);
+    UserDocuments findByDocumentIdAndUsername(ObjectId documentId, String username);
 }

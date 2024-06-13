@@ -49,6 +49,11 @@ public class MixedController {
         }
     }
 
+    @PostMapping("DeleteDocument")
+    public ResponseEntity<String> DeleteDocument(@RequestBody Map<String, String> body) {
+        ObjectId documentId = new ObjectId(body.get("documentId"));
+    }
+
     @PostMapping("/AddDocument")
     public ResponseEntity<String> AddDocument(@RequestBody Map<String, String> body) {
         String documentTitle = body.get("title");

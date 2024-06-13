@@ -49,6 +49,7 @@ export default function Documents(props) {
                         (documents.filter(document => document.accessType === 'OWNER').map((document, key) => (
                             <div key={key}>
                                 <DocumentCard
+                                    username={props.user.username}
                                     title={document.title}
                                     setDocuments={setDocuments}
                                     description={document.description}
@@ -69,11 +70,13 @@ export default function Documents(props) {
                         (documents.filter(document => document.accessType !== 'OWNER').map((document, key) => (
                             <div key={key}>
                                 <DocumentCard
+                                    username={props.user.username}
                                     title={document.title}
                                     setDocuments={setDocuments}
                                     description={document.description}
                                     documentId={document.documentId}
-                                    isViewer={false}
+                                    isViewer={document.accessType === 'VIEWER' ? true : false}
+                                    toast={toast}
                                 />
                             </div> 
                     )))}
