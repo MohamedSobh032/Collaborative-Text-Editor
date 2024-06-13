@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import serverSide.Database.Documents.Documents;
-import serverSide.Database.Documents.DocumentsController;
-import serverSide.Database.Documents.DocumentsRepository;
 import serverSide.Database.Documents.DocumentsService;
 import serverSide.Database.UserDocuments.UserDocuments;
 import serverSide.Database.UserDocuments.UserDocumentsService;
