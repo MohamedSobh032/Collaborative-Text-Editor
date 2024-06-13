@@ -23,6 +23,7 @@ export default function AddDocument(props) {
             if (response.status === 406) {
                 toast.error("There is something wrong with our server, please try again");
             } else if (response.status === 200) {
+                props.setDocuments(prevDocs => [...prevDocs, {title: title, description: description, accessType: 'OWNER'}]);
                 props.setShowAdd(false);
             } else {
                 throw new Error("Unexpected error");

@@ -2,6 +2,8 @@ import './Documents.css'
 import Navbar from './Components/Navbar/Navbar'
 import DocumentCard from './Components/DocumentCard/DocumentCard'
 
+import logo from '../../assets/react.svg'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,7 +13,6 @@ export default function Documents(props) {
 
     const [name, setName] = useState(props.user.name);
     const [documents, setDocuments] = useState([]);
-
 
     useEffect(() => {
         const fetchDocuments = async () => {
@@ -38,25 +39,42 @@ export default function Documents(props) {
                 password={props.user.password}
                 setName={setName}
                 setUser={props.setUser}
+                setDocuments={setDocuments}
             />
-            {documents.filter(document => document.accessType === 'OWNER').map((document, key) => (
-                <div key={key}>
-                    <DocumentCard
-                        title={document.title}
-                        description={document.description}
-                        isViewer={false}
-                    />
-                </div>    
-            ))}
-            {documents.filter(document => document.accessType !== 'OWNER').map((document, key) => (
-                <div key={key}>
-                    <DocumentCard
-                        title={document.title}
-                        description={document.description}
-                        isViewer={() => {document.accessType === 'VIEWER'? true : false}}
-                    />
-                </div>    
-            ))}
+            <div className='section'>
+                <h2 className='section-headers'>YOUR DOCUMENTS</h2>
+                <div className='document-list'>
+                    {documents.filter(document => document.accessType === 'OWNER').length === 0 ?
+                        (<h2 className='no-documents'>No Documents Available</h2>)
+                            :
+                        (documents.filter(document => document.accessType === 'OWNER').map((document, key) => (
+                            <div key={key}>
+                                <DocumentCard
+                                    title={document.title}
+                                    description={document.description}
+                                    isViewer={false}
+                                />
+                            </div> 
+                    )))}
+                </div>
+            </div>
+            <div className='section'>
+                <h2 className='section-headers'>SHARED DOCUMENTS</h2>
+                <div className='document-list'>
+                    {documents.filter(document => document.accessType !== 'OWNER').length === 0 ?
+                        (<h2 className='no-documents'>No Documents Available</h2>)
+                            :
+                        (documents.filter(document => document.accessType !== 'OWNER').map((document, key) => (
+                            <div key={key}>
+                                <DocumentCard
+                                    title={document.title}
+                                    description={document.description}
+                                    isViewer={false}
+                                />
+                            </div> 
+                    )))}
+                </div>
+            </div> 
         </div>
     )
 }

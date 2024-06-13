@@ -1,0 +1,43 @@
+.section {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.document-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.section-headers {
+    color: #022049;
+    margin-left: 50px;
+}
+
+.no-documents {
+    font-size: 18px;
+    color: #06295c;
+    margin-bottom: 20px;
+    margin-left: 45%;
+}
+
+.documents-RotatorLogo {
+    position: fixed;
+    top: -10%;
+    left: -500px;
+    transform: translateX(-50%);
+    opacity: 0.6;
+    width: 1000px;
+    z-index: 0;
+    height: auto;
+    animation: rotateLogo 5s linear infinite;
+}
+
+@keyframes rotateLogo {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

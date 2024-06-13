@@ -14,7 +14,6 @@ import serverSide.Database.UserDocuments.UserDocuments;
 import serverSide.Database.UserDocuments.UserDocumentsService;
 import serverSide.Database.Users.UsersService;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +30,6 @@ public class MixedController {
     private DocumentsService documentsService;
     @Autowired
     private UserDocumentsService userDocumentsService;
-    @Autowired
-    private DocumentsController documentsController;
-    @Autowired
-    private DocumentsRepository documentsRepository;
 
     @PostMapping("/DeleteAccount")
     public ResponseEntity<String> DeleteAccount(@RequestBody Map<String, String> body) {
@@ -81,7 +76,6 @@ public class MixedController {
                     Map<String, Object> documentMap = new HashMap<>();
                     ObjectId documentId = userDocument.getDocumentId();
                     Documents doc = documentsService.getDocumentById(documentId);
-                    documentMap.put("id", doc.getId());
                     documentMap.put("title", doc.getTitle());
                     documentMap.put("description", doc.getDescription());
                     documentMap.put("accessType", userDocument.getAccessType());
