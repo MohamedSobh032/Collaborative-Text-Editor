@@ -2,8 +2,6 @@ import './Documents.css'
 import Navbar from './Components/Navbar/Navbar'
 import DocumentCard from './Components/DocumentCard/DocumentCard'
 
-import logo from '../../assets/react.svg'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,6 +38,7 @@ export default function Documents(props) {
                 setName={setName}
                 setUser={props.setUser}
                 setDocuments={setDocuments}
+                toast={toast}
             />
             <div className='section'>
                 <h2 className='section-headers'>YOUR DOCUMENTS</h2>
@@ -51,8 +50,11 @@ export default function Documents(props) {
                             <div key={key}>
                                 <DocumentCard
                                     title={document.title}
+                                    setDocuments={setDocuments}
                                     description={document.description}
+                                    documentId={document.documentId}
                                     isViewer={false}
+                                    toast={toast}
                                 />
                             </div> 
                     )))}
@@ -68,13 +70,15 @@ export default function Documents(props) {
                             <div key={key}>
                                 <DocumentCard
                                     title={document.title}
+                                    setDocuments={setDocuments}
                                     description={document.description}
+                                    documentId={document.documentId}
                                     isViewer={false}
                                 />
                             </div> 
                     )))}
                 </div>
-            </div> 
+            </div>
         </div>
     )
 }

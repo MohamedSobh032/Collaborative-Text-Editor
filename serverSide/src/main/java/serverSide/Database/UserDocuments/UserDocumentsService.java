@@ -30,5 +30,4 @@ public class UserDocumentsService {
     public List<UserDocuments> getUserDocuments(String username) {
         return userDocumentsRepository.findByUsername(username);
     }
-
 }

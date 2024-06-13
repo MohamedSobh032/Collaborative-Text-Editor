@@ -11,4 +11,5 @@ public interface DocumentsRepository extends MongoRepository<Documents, ObjectId
 
     void deleteById(ObjectId Id);
     Optional<Documents> findById(ObjectId Id);
+    Documents findById(String Id);
 }

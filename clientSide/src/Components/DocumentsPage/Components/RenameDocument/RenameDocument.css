@@ -1,0 +1,112 @@
+.renamedocument-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.renamedocument-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.renamedocument-header h2 {
+    color: #06295c;
+    padding-left: 5px;
+    margin: 0px;
+}
+
+.renamedocument-header button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}
+
+.renamedocument-header button:hover {
+    background-color: #d32f2f;
+}
+
+.renamedocument-input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+  
+.renamedocument-input-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.renamedocument-input-group input:focus {
+    border-color: #007bff;
+}
+
+.renamedocument-input-group label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #555;
+    transition: all 0.2s;
+    pointer-events: none;
+    background-color: #fff;
+    padding: 0 5px;
+}
+  
+.renamedocument-input-group input:focus + label,
+.renamedocument-input-group.focused label {
+    top: -10px;
+    left: 10px;
+    color: #007bff;
+    font-size: 12px;
+}
+
+.renamedocument-container form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.renamedocument-container form button::before {
+    font-size: 16px;
+    display: grid;
+    place-items: center;
+    content: 'Rename';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+  
+.renamedocument-container form button:hover::before {
+    opacity: 1;
+}

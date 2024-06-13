@@ -74,6 +74,7 @@ public class MixedController {
                     Map<String, Object> documentMap = new HashMap<>();
                     ObjectId documentId = userDocument.getDocumentId();
                     Documents doc = documentsService.getDocumentById(documentId);
+                    documentMap.put("documentId", documentId.toString());
                     documentMap.put("title", doc.getTitle());
                     documentMap.put("description", doc.getDescription());
                     documentMap.put("accessType", userDocument.getAccessType());

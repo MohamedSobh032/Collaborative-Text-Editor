@@ -1,14 +1,13 @@
 import './Navbar.css'
+import AddDocument from '../AddDocument/AddDocument'
+import ProfileCard from '../ProfileCard/ProfileCard'
+import ChangeProfile from '../ChangeProfile/ChangeProfile';
+import DeleteAccount from '../DeleteAccount/DeleteAccount'
 
 import Icon from '../../../../assets/NavbarIcon.png'
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-import AddDocument from '../AddDocument/AddDocument'
-import ProfileCard from '../ProfileCard/ProfileCard'
-import ChangeProfile from '../ChangeProfile/ChangeProfile';
-import DeleteAccount from '../DeleteAccount/DeleteAccount'
 
 export default function Navbar(props) {
 
@@ -47,6 +46,7 @@ export default function Navbar(props) {
             setShowAdd={setShowAdd}
             username={props.username}
             setDocuments={props.setDocuments}
+            toast={props.toast}
           />
         }
         {showProfile &&
@@ -64,6 +64,7 @@ export default function Navbar(props) {
             password={props.password}
             setName={props.setName}
             setChangeProfile={setShowChange}
+            toast={props.toast}
           />
         }
         {showDelete &&

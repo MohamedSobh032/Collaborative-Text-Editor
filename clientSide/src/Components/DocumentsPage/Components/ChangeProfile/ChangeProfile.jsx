@@ -3,9 +3,6 @@ import './ChangeProfile.css'
 import eye from '../../../../assets/eye.png'
 import hidden from '../../../../assets/hidden.png'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useState } from 'react'
 
 export default function ChangeProfile(props) {
@@ -23,11 +20,11 @@ export default function ChangeProfile(props) {
     const handleSubmit = (e) =>{
         e.preventDefault();
         if (props.password !== password) {
-            toast.error("Wrong password, please try again");
+            props.toast.error("Wrong password, please try again");
             setPassword('');
             return;
         } else if (newPassword !== '' && newPassword.length < 8) {
-            toast.error("Password must be at least 8 characters long");
+            props.toast.error("Password must be at least 8 characters long");
             return;
         } else {
             let userSent = (name === '') ? props.name : name;
@@ -41,10 +38,11 @@ export default function ChangeProfile(props) {
             })
             .then((response) => {
                 if (response.status === 406) {
-                  toast.error("There is something wrong with our server, please try again");
+                  props.toast.error("There is something wrong with our server, please try again");
                 } else if (response.status === 400) {
-                  toast.error("Could not connect to server, please try again later");
+                  props.toast.error("Could not connect to server, please try again later");
                 } else if (response.status === 200) {
+                    props.toast.success("Profile Changed Successfully");
                     props.setName(userSent);
                     props.setChangeProfile(false);
                 } else {
@@ -56,7 +54,6 @@ export default function ChangeProfile(props) {
 
     return (
         <div>
-            <ToastContainer />
             <div className='changeprofile-container'>
                 <div className='changeprofile-header'>
                     <h2>Change Profile</h2>

@@ -21,8 +21,9 @@ export default function AddDocument(props) {
         })
         .then((response) => {
             if (response.status === 406) {
-                toast.error("There is something wrong with our server, please try again");
+                props.toast.error("There is something wrong with our server, please try again");
             } else if (response.status === 200) {
+                props.toast.success("Document Added Successfully");
                 props.setDocuments(prevDocs => [...prevDocs, {title: title, description: description, accessType: 'OWNER'}]);
                 props.setShowAdd(false);
             } else {

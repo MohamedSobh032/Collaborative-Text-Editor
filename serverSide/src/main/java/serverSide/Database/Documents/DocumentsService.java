@@ -23,4 +23,13 @@ public class DocumentsService {
         return documentsRepository.findById(documentId).orElse(null);
     }
 
+    public Boolean updateDocument(String documentId, String documentTitle) {
+        Documents documents = documentsRepository.findById(documentId);
+        if (documents == null) {
+            return false;
+        }
+        documents.setTitle(documentTitle);
+        documentsRepository.save(documents);
+        return true;
+    }
 }
