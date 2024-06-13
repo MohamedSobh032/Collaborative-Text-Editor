@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.AccessType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,16 +16,13 @@ public class UserDocuments {
 
     @Id
     private ObjectId id;
-    private String DocumentId;
-    private String DocumentName;
-    private String DocumentDescription;
-    private AccessType AccessType;
+    private ObjectId documentId;
+    private String username;
+    private AccessType accessType;
 
-    public UserDocuments(String documentId, String documentName,
-                         String documentDescription, AccessType accessType) {
-        DocumentId = documentId;
-        DocumentName = documentName;
-        DocumentDescription = documentDescription;
-        AccessType = accessType;
+    public UserDocuments(ObjectId documentId, String username, AccessType accessType) {
+        this.documentId = documentId;
+        this.username = username;
+        this.accessType = accessType;
     }
 }

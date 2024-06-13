@@ -1,8 +1,5 @@
 import './AddDocument.css'
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useState } from 'react'
 
 export default function AddDocument(props) {
@@ -13,10 +10,24 @@ export default function AddDocument(props) {
     const [isTitleFocused, setIsTitleFocused] = useState(false);
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        fetch("http://localhost:8080/api/mixed/AddDocument", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username: props.username, title: title, description: description}),
+        })
+        .then((response) => {
+            if (response.status === 406) {
+                toast.error("There is something wrong with our server, please try again");
+            } else if (response.status === 200) {
+                props.setShowAdd(false);
+            } else {
+                throw new Error("Unexpected error");
+            }
+        })
     }
 
     return (
@@ -48,6 +59,7 @@ export default function AddDocument(props) {
                       onChange={(e) => setDescription(e.target.value)}
                       onFocus={() => setIsDescriptionFocused(true)}
                       onBlur={() => setIsDescriptionFocused(false)}
+                      required
                     />
                     <label htmlFor='description'>Document Description</label>
                 </div>

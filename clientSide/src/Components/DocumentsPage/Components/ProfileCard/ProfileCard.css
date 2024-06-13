@@ -17,11 +17,11 @@
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    text-wrap: nowrap;
 }
 
 .profilecard-header h2 {
     padding-left: 5px;
+    text-wrap: nowrap;
 }
 
 .profilecard-profilefield {

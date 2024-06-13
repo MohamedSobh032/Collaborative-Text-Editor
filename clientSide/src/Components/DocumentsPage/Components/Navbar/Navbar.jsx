@@ -45,6 +45,7 @@ export default function Navbar(props) {
         {showAdd &&
           <AddDocument
             setShowAdd={setShowAdd}
+            username={props.username}
           />
         }
         {showProfile &&

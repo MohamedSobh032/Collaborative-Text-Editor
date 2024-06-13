@@ -10,4 +10,5 @@ public class ServerSideApplication {
 		SpringApplication.run(ServerSideApplication.class, args);
 	}
 
+
 }

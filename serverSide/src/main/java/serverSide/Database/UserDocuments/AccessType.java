@@ -1,6 +1,6 @@
 package serverSide.Database.UserDocuments;
 
-public enum AccessTypes {
+public enum AccessType {
     VIEWER,
     EDITOR,
     OWNER

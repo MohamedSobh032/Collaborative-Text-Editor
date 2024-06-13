@@ -23,7 +23,7 @@ export default function DeleteAccount(props) {
             toast.error("Wrong password, please try again");
             setPassword('');
         } else {
-            fetch("http://localhost:8080/api/users/DeleteAccount", {
+            fetch("http://localhost:8080/api/mixed/DeleteAccount", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

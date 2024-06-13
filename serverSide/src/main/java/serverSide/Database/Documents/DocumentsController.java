@@ -1,17 +1,14 @@
-package serverSide.Database.UserDocuments;
+package serverSide.Database.Documents;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/userdocuments")
+@RequestMapping("/api/documents")
 @CrossOrigin
-public class UserDocumentsController {
-
+public class DocumentsController {
     @Autowired
-    private UserDocumentsService userDocumentsService;
-
+    private DocumentsService documentsService;
 }

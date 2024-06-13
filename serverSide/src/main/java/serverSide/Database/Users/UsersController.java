@@ -63,15 +63,4 @@ public class UsersController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-    @PostMapping("/DeleteAccount")
-    public ResponseEntity<String> DeleteAccount(@RequestBody Map<String, String> body) {
-        String username = body.get("username");
-        try {
-            usersService.DeleteUser(username);
-            return new ResponseEntity<>("User deleted", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
 }
