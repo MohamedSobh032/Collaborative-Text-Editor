@@ -46,4 +46,8 @@ public class UserDocumentsService {
     public void deleteDocument(ObjectId documentId) {
         userDocumentsRepository.deleteByDocumentId(documentId);
     }
+
+    public void deleteDocumentByDocumentIdAndUsername(ObjectId documentId, String username) {
+        userDocumentsRepository.deleteByDocumentIdAndUsername(documentId, username);
+    }
 }

@@ -34,6 +34,24 @@ export default function DocumentCard(props) {
         })
     }
 
+    function handleRemoveAccess() {
+        fetch("http://localhost:8080/api/userdocuments/RemoveAccess", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({documentId: props.documentId, username: props.username})
+        })
+        .then((response) => {
+            if (response.status === 400) {
+                props.toast.error("Could not connect to server, please try again later");
+            } else if (response.status === 200) {
+                props.toast.success("Access Removed Successfully Successfully");
+                props.setDocuments(prevDocs => (prevDocs.filter(doc => doc.documentId !== props.documentId)));
+            }
+        })
+    }
+
     return (
         <div>
         <div className='documentcard-container'>
@@ -41,7 +59,7 @@ export default function DocumentCard(props) {
                 <div className='documentcard-header'>
                     <h2>{title}</h2>
                     <div className='documentcard-images'>
-                        {props.isViewer &&
+                        {props.role === 'VIEWER' &&
                             <img
                                 src={eye}
                                 alt='Viewer or Not'
@@ -56,13 +74,18 @@ export default function DocumentCard(props) {
                             onClick={() => {setToggleDropdown(!toggleDropdown)}}
                             title='Options'
                         />
-                        {toggleDropdown && (
+                        {toggleDropdown && props.role === 'OWNER' &&
                             <div className='documentcard-dropdown-content'>
                                 <span onClick={() => {setShowRename(!showRename); setToggleDropdown(!toggleDropdown)}}>Rename Document</span>
                                 <span onClick={() => {setShowShare(!showShare); setToggleDropdown(!toggleDropdown)}}>Share Document</span>
                                 <span onClick={handleDelete}>Delete Document</span>
                             </div>
-                        )}
+                        }
+                        {toggleDropdown && props.role !== 'OWNER' &&  
+                            <div className='documentcard-dropdown-content'>
+                                <span onClick={handleRemoveAccess}>Remove Accessiblity</span>
+                            </div>
+                        }    
                     </div>
                 </div>
                 <p>{props.description}</p>

@@ -54,7 +54,7 @@ export default function Documents(props) {
                                     setDocuments={setDocuments}
                                     description={document.description}
                                     documentId={document.documentId}
-                                    isViewer={false}
+                                    role={document.accessType}
                                     toast={toast}
                                 />
                             </div> 
@@ -75,7 +75,7 @@ export default function Documents(props) {
                                     setDocuments={setDocuments}
                                     description={document.description}
                                     documentId={document.documentId}
-                                    isViewer={document.accessType === 'VIEWER' ? true : false}
+                                    role={document.accessType}
                                     toast={toast}
                                 />
                             </div> 
