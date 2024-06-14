@@ -5,9 +5,12 @@ import ShareDocument from '../ShareDocument/ShareDocument'
 import ThreeDots from '../../../../assets/dots.png'
 import eye from '../../../../assets/eye.png'
 
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 
 export default function DocumentCard(props) {
+
+    const navigate = useNavigate();
 
     const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -52,6 +55,13 @@ export default function DocumentCard(props) {
         })
     }
 
+    function handleOpen() {
+        props.setDocument({documentId: props.documentId, documentTitle: title,
+                        documentDescription: props.description, role: props.role})
+        const dir = "/TypingArea/" + props.documentId;
+        navigate(dir);
+    }
+
     return (
         <div>
         <div className='documentcard-container'>
@@ -90,7 +100,7 @@ export default function DocumentCard(props) {
                 </div>
                 <p>{props.description}</p>
             </div>
-            <button>Open Document</button>
+            <button onClick={handleOpen}>Open Document</button>
         </div>
         {showRename &&
             <RenameDocument

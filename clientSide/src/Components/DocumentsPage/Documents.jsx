@@ -55,6 +55,7 @@ export default function Documents(props) {
                                     description={document.description}
                                     documentId={document.documentId}
                                     role={document.accessType}
+                                    setDocument={props.setDocument}
                                     toast={toast}
                                 />
                             </div> 
@@ -76,6 +77,7 @@ export default function Documents(props) {
                                     description={document.description}
                                     documentId={document.documentId}
                                     role={document.accessType}
+                                    setDocument={props.setDocument}
                                     toast={toast}
                                 />
                             </div> 
