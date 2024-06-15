@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './ShareDocument.css'
 
 import { useState } from 'react'
@@ -14,7 +15,7 @@ export default function ShareDocument(props) {
         if (props.username === username) {
             props.toast.error("Cannot change your own access")
         } else {
-            fetch("http://localhost:8080/api/userdocuments/ShareDocument", {
+            fetch("http://localhost:8080/api/mixed/ShareDocument", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -24,6 +25,9 @@ export default function ShareDocument(props) {
             .then((response) => {
                 if (response.status === 400) {
                     props.toast.error("Could not connect to server, please try again later");
+                } else if (response.status === 406) {
+                    props.toast.error("User does not exist");
+                    setUsername('');
                 } else if (response.status === 200) {
                     props.toast.success("Document Shared Successfully");
                     props.setShowShare(false);
@@ -33,13 +37,13 @@ export default function ShareDocument(props) {
     }
 
     return (
-        <div className='sharedocument-container'>
+        <div className='floatingcards'>
             <div className='sharedocument-header'>
                 <h2>Share Document</h2>
                 <button onClick={() => {props.setShowShare(false)}}>X</button>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className={`sharedocument-input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
+                <div className={`input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
                     <input
                         type="text"
                         id="username"
@@ -65,7 +69,7 @@ export default function ShareDocument(props) {
                         <option value="Editor">Editor</option>
                     </select>
                 </div>
-                <button>Share</button>
+                <button className='input-buttons'>Share</button>
             </form>
         </div>
     )

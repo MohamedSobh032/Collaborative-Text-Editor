@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './AddDocument.css'
 
 import { useState } from 'react'
@@ -42,13 +43,13 @@ export default function AddDocument(props) {
     }
 
     return (
-        <div className='adddocument-container'>
-            <div className='adddocument-header'>
+        <div className='floatingcards'>
+            <div className='floatingcards-header'>
                 <h2>Add Document</h2>
                 <button onClick={() => {props.setShowAdd(false)}}>X</button>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className={`adddocument-input-group ${isTitleFocused || title ? 'focused' : ''}`}>
+                <div className={`input-group ${isTitleFocused || title ? 'focused' : ''}`}>
                     <input
                       type="text"
                       id="title"
@@ -74,7 +75,7 @@ export default function AddDocument(props) {
                     />
                     <label htmlFor='description'>Document Description</label>
                 </div>
-                <button type='submit'>Create Document</button>
+                <button className="input-buttons" type='submit'>Create Document</button>
             </form>
         </div>
     )

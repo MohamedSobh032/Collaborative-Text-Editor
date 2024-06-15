@@ -1,10 +1,11 @@
+import '../../../../index.css'
 import './ProfileCard.css'
 
 export default function ProfileCard(props) {
 
     return (
-        <div className='profilecard-container'>
-            <div className='profilecard-header'>
+        <div className='floatingcards'>
+            <div className='floatingcards-header'>
                 <h2>Profile Information</h2>
                 <button onClick={() => {props.setShowProfile(false)}} className='profilecard-closebutton'>X</button>
             </div>

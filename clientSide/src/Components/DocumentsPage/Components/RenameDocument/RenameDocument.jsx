@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './RenameDocument.css'
 
 import { useState } from 'react';
@@ -38,13 +39,13 @@ export default function RenameDocument(props) {
     }
 
     return (
-        <div className='renamedocument-container'>
+        <div className='floatingcards'>
             <div className='renamedocument-header'>
                 <h2>Rename Document</h2>
                 <button onClick={() => {props.setShowRename(false)}}>X</button>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className={`renamedocument-input-group ${isTitleFocused || title ? 'focused' : ''}`}>
+                <div className={`input-group ${isTitleFocused || title ? 'focused' : ''}`}>
                     <input
                         type="text"
                         id="title"
@@ -57,7 +58,7 @@ export default function RenameDocument(props) {
                     />
                     <label htmlFor='title'>New Title</label>
                 </div>
-                <button>Rename</button>
+                <button className='input-buttons'>Rename</button>
             </form>
         </div>
     )

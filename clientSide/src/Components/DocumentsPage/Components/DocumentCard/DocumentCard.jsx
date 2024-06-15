@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './DocumentCard.css'
 import RenameDocument from '../RenameDocument/RenameDocument'
 import ShareDocument from '../ShareDocument/ShareDocument'
@@ -100,7 +101,7 @@ export default function DocumentCard(props) {
                 </div>
                 <p>{props.description}</p>
             </div>
-            <button onClick={handleOpen}>Open Document</button>
+            <button className='input-buttons' onClick={handleOpen}>Open Document</button>
         </div>
         {showRename &&
             <RenameDocument

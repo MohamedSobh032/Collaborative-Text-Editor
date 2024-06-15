@@ -1,4 +1,5 @@
 import "./Signup.css";
+import "../../index.css"
 
 import logo from "../../assets/react.svg";
 import eye from "../../assets/eye.png";
@@ -56,14 +57,14 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-allcontainer">
+    <div className="login-signup">
       <ToastContainer />
-      <img src={logo} alt="Company Logo" className="signup-RotatorLogo" />
-      <div className="signup-container">
+      <img src={logo} alt="Company Logo" className="RotatorLogo" />
+      <div className="login-signup-container">
         <h1>Sign up</h1>
         <p>Hope you Enjoy Our Application!</p>
         <form onSubmit={handleSubmit}>
-          <div className={`signup-input-group ${isNameFocused || name ? 'focused' : ''}`}>
+          <div className={`input-group ${isNameFocused || name ? 'focused' : ''}`}>
             <input
               type="text"
               id="name"
@@ -76,7 +77,7 @@ export default function Signup() {
             />
             <label htmlFor='name'>Name</label>
           </div>
-          <div className={`signup-input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
+          <div className={`input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
             <input
               type="text"
               id="username"
@@ -89,7 +90,7 @@ export default function Signup() {
             />
             <label htmlFor='username'>Username</label>
           </div>
-          <div className={`signup-input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
+          <div className={`input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -104,12 +105,12 @@ export default function Signup() {
             <img
               src={showPassword? hidden : eye}
               alt="Toggle Password Visibility"
-              className="signup-eye-icon-Password"
+              className="eye-icon-password"
               onClick={() => setShowPassword(!showPassword)}
               title={showPassword? "Hide Password" : "Show Password"}
             />
           </div>
-          <div className={`signup-input-group ${isConfimPasswordFocused || confirmPassword ? 'focused' : ''}`}>
+          <div className={`input-group ${isConfimPasswordFocused || confirmPassword ? 'focused' : ''}`}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmpassword"
@@ -124,12 +125,12 @@ export default function Signup() {
             <img
               src={showConfirmPassword? hidden : eye}
               alt="Toggle Password Visibility"
-              className="signup-eye-icon-Password"
+              className="eye-icon-password"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               title={showConfirmPassword? "Hide Password" : "Show Password"}
             />
           </div>
-          <button type='submit'>Sign up</button>
+          <button className="input-buttons" type='submit'>Sign up</button>
         </form>
         <p>Already Have an Account? <Link to="/Login">Click Here to Login</Link></p>
       </div>

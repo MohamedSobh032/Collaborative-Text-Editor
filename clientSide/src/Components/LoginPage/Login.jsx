@@ -1,3 +1,4 @@
+import '../../index.css'
 import './Login.css'
 
 import logo from '../../assets/react.svg'
@@ -68,14 +69,14 @@ export default function Login({setUser}) {
   }
 
   return (
-    <div className='login-allcontainer'>
+    <div className='login-signup'>
       <ToastContainer />
-      <img src={logo} alt="Company Logo" className='login-RotatorLogo'/>
-      <div className='login-container'>
+      <img src={logo} alt="Company Logo" className='RotatorLogo'/>
+      <div className='login-signup-container'>
         <h1>Sign in</h1>
         <p>Keep it Professional with Collaborative Editing</p>
         <form onSubmit={handleSubmit}>
-          <div className={`login-input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
+          <div className={`input-group ${isUsernameFocused || username ? 'focused' : ''}`}>
             <input
               type="text"
               id="username"
@@ -88,7 +89,7 @@ export default function Login({setUser}) {
             />
             <label htmlFor='username'>Username</label>
           </div>
-          <div className={`login-input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
+          <div className={`input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -103,12 +104,12 @@ export default function Login({setUser}) {
             <img
               src={showPassword? hidden : eye}
               alt="Toggle Password Visibility"
-              className="login-eye-icon-Password"
+              className="eye-icon-password"
               onClick={() => setShowPassword(!showPassword)}
               title={showPassword? "Hide Password" : "Show Password"}
             />
           </div>
-          <button type='submit'>Login</button>
+          <button className="input-buttons" type='submit'>Login</button>
         </form>
         <p>New to Our Editor? <Link to="/Signup">Click Here to Sign up</Link></p>
       </div>

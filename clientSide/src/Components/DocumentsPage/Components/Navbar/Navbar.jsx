@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './Navbar.css'
 import AddDocument from '../AddDocument/AddDocument'
 import ProfileCard from '../ProfileCard/ProfileCard'
@@ -33,10 +34,10 @@ export default function Navbar(props) {
           <li onClick={() => {setShowProfile(!showProfile)}}>Profile</li>
           <li>
             Settings
-            <ul>
-              <li onClick={() => {setShowChange(!showChange)}}>Change Profile</li>
-              <li onClick={() => {setShowDelete(!showDelete)}}>Delete my Account</li>
-            </ul>
+            <div>
+              <span onClick={() => {setShowChange(!showChange)}}>Change Profile</span>
+              <span onClick={() => {setShowDelete(!showDelete)}}>Delete My Account</span>
+            </div>
           </li>
           <li onClick={handleLogout}>Logout</li>
         </ul>

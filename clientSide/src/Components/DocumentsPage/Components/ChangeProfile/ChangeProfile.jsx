@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './ChangeProfile.css'
 
 import eye from '../../../../assets/eye.png'
@@ -54,13 +55,13 @@ export default function ChangeProfile(props) {
 
     return (
         <div>
-            <div className='changeprofile-container'>
-                <div className='changeprofile-header'>
+            <div className='floatingcards'>
+                <div className='floatingcards-header'>
                     <h2>Change Profile</h2>
                     <button onClick={() => {props.setChangeProfile(false)}}>X</button>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className={`changeprofile-input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
+                    <div className={`input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
                         <input
                           type={showPassword ? "text" : "password"}
                           id="password"
@@ -75,12 +76,12 @@ export default function ChangeProfile(props) {
                         <img
                           src={showPassword? hidden : eye}
                           alt="Toggle Password Visibility"
-                          className="changeprofile-eye-icon-Password"
+                          className="eye-icon-password"
                           onClick={() => setShowPassword(!showPassword)}
                           title={showPassword? "Hide Password" : "Show Password"}
                         />
                     </div>
-                    <div className={`changeprofile-input-group ${isNameFocused || name ? 'focused' : ''}`}>
+                    <div className={`input-group ${isNameFocused || name ? 'focused' : ''}`}>
                         <input
                             type="text"
                             id="name"
@@ -92,7 +93,7 @@ export default function ChangeProfile(props) {
                         />
                         <label htmlFor='name'>New Name</label>
                     </div>
-                    <div className={`changeprofile-input-group ${isNewPasswordFocused || newPassword ? 'focused' : ''}`}>
+                    <div className={`input-group ${isNewPasswordFocused || newPassword ? 'focused' : ''}`}>
                         <input
                             type="password"
                             id="newpassword"
@@ -104,7 +105,7 @@ export default function ChangeProfile(props) {
                         />
                         <label htmlFor='username'>New Password</label>
                     </div>
-                    <button type='submit'>Change Settings</button>
+                    <button className='input-buttons' type='submit'>Change Settings</button>
                 </form>
             </div>
         </div>

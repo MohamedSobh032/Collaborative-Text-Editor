@@ -1,3 +1,4 @@
+import '../../../../index.css'
 import './DeleteAccount.css'
 
 import eye from '../../../../assets/eye.png'
@@ -48,14 +49,14 @@ export default function DeleteAccount(props) {
     return (
         <div>
             <ToastContainer />
-            <div className='deleteaccount-container'>
-                <div className='deleteaccount-header'>
+            <div className='floatingcards'>
+                <div className='floatingcards-header'>
                     <h2>Delete Account</h2>
                     <button onClick={() => {props.setShowDelete(false)}}>X</button>
                 </div>
-                <p>Sure you want to delete your account?</p>
+                <p className='deleteaccount-parag'>Sure you want to delete your account?</p>
                 <form onSubmit={handleSubmit}>
-                    <div className={`deleteaccount-input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
+                    <div className={`input-group ${isPasswordFocused || password ? 'focused' : ''}`}>
                         <input
                           type={showPassword ? "text" : "password"}
                           id="password"
@@ -70,12 +71,12 @@ export default function DeleteAccount(props) {
                         <img
                           src={showPassword? hidden : eye}
                           alt="Toggle Password Visibility"
-                          className="deleteaccount-eye-icon-Password"
+                          className="eye-icon-password"
                           onClick={() => setShowPassword(!showPassword)}
                           title={showPassword? "Hide Password" : "Show Password"}
                         />
                     </div>
-                    <button type='submit'>Delete Account</button>
+                    <button className='input-buttons' type='submit'>Delete Account</button>
                 </form>
             </div>
         </div>
