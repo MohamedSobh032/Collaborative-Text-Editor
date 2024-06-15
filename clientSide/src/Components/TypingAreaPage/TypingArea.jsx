@@ -1,7 +1,6 @@
 import Quill from "quill"
 import "quill/dist/quill.snow.css"
-// import Stomp from 'stompjs'
-// import SockJS from 'sockjs-client'
+import {over} from 'stompjs';
 
 import { useCallback, useEffect, useState } from 'react'
 
@@ -20,7 +19,6 @@ const TOOLBAR_OPTIONS = [
 
 export default function TypingArea(props) {
 
-
     // const [stompClient, setStompClient] = useState(null);
 
     // useEffect(() => {
@@ -29,10 +27,9 @@ export default function TypingArea(props) {
     //     client.connect({}, () => {
     //         client.subscribe('/topic/')
     //     })
-
     //     setStompClient(client);
+    // }, []);
 
-    // }, [])
 
     const wrapperRef = useCallback(wrapper => {
         if (wrapper == null) return;

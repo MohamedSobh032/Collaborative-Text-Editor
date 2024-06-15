@@ -143,11 +143,12 @@ body, html {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 0;
 }
 
 .floatingcards-header h2 {
   text-wrap: nowrap;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .floatingcards-header button {

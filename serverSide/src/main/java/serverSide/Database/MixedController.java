@@ -122,7 +122,6 @@ public class MixedController {
             } else {
                 return new ResponseEntity<>("Not Shared Successfully", HttpStatus.NOT_ACCEPTABLE);
             }
-
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
