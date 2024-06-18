@@ -1,7 +1,10 @@
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Client } from "@stomp/stompjs";
+
+import ExitIcon from "../../assets/logout.png";
 
 import "./TypingArea.css";
 
@@ -15,17 +18,30 @@ const TOOLBAR_OPTIONS = [
 ];
 
 export default function TypingArea(props) {
-  const [client, setClient] = useState(null);
+  const navigate = useNavigate();
+
+  console.log(props.document);
+
+  const [client, setClient] = useState();
   const [quill, setQuill] = useState();
 
   useEffect(() => {
+    if (quill == null) return;
     const stompClient = new Client({
       brokerURL: "ws://localhost:8080/api",
       onConnect: () => {
         stompClient.subscribe(
           `/app/subscribe/${props.document["documentId"]}/${props.user["username"]}`,
           (message) => {
-            console.log(JSON.parse(message.body));
+            // Load
+          }
+        );
+        stompClient.subscribe(
+          `/topic/public/${props.document["documentId"]}`,
+          (message) => {
+            const info = JSON.parse(message.body);
+            if (info["username"] === props.user["username"]) return;
+            quill.updateContents(info["delta"]);
           }
         );
         setClient(stompClient);
@@ -36,15 +52,20 @@ export default function TypingArea(props) {
     return () => {
       stompClient.deactivate();
     };
-  }, []);
+  }, [quill]);
 
   useEffect(() => {
-    if (!(quill && client)) return;
+    if (quill == null || client == null) return;
 
     const handler = (delta, oldDelta, source) => {
       if (source !== "user") return;
-      let index = delta.ops[0]["retain"] || 0;
-      console.log(delta.ops);
+      client.publish({
+        destination: `/app/${props.document["documentId"]}/sendData`,
+        body: JSON.stringify({
+          delta,
+          username: props.user["username"],
+        }),
+      });
     };
     quill.on("text-change", handler);
 
@@ -61,7 +82,16 @@ export default function TypingArea(props) {
     const q = new Quill(editor, {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
+      readOnly: props.document["role"] === "VIEWER",
     });
+
+    // const customButton = wrapper.querySelector(".ql-exit");
+    // if (customButton) {
+    //   customButton.addEventListener("click", () => {
+    //     navigate("/Documents"); // Navigate to desired route
+    //   });
+    // }
+
     setQuill(q);
   }, []);
 
