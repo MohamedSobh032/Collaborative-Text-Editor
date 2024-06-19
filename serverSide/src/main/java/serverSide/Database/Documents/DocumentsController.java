@@ -30,4 +30,20 @@ public class DocumentsController {
         }
     }
 
+    @PostMapping("/SaveDocument")
+    public ResponseEntity<String> SaveDocument(@RequestBody Map<String, String> body) {
+        String documentId = body.get("documentId");
+        Object Data = body.get("documentData");
+        try {
+            if (documentsService.updateData(documentId, Data)) {
+                return new ResponseEntity<>("Documents successfully updated", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Document not found", HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 }

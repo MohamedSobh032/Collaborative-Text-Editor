@@ -17,9 +17,9 @@ public class Documents {
     private ObjectId id;
     private String title;
     private String description;
-    private String data;
+    private Object data;
 
-    public Documents(String title, String description, String data) {
+    public Documents(String title, String description, Object data) {
         this.title = title;
         this.description = description;
         this.data = data;

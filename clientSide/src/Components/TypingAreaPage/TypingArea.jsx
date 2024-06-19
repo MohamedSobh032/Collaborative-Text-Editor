@@ -25,6 +25,29 @@ export default function TypingArea(props) {
   const [client, setClient] = useState();
   const [quill, setQuill] = useState();
 
+  function saveDocument() {
+    fetch("http://localhost:8080/api/documents/SaveDocument", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        documentId: props.document["documentId"],
+        documentData: quill.getContents(),
+      }),
+    }).then((response) => {
+      if (response.status === 404) {
+        alert("cannot save");
+      } else if (response.status === 400) {
+        alert("server error");
+      } else if (response.status === 200) {
+        navigate("/Documents");
+      } else {
+        throw new Error("Unexpected error");
+      }
+    });
+  }
+
   useEffect(() => {
     if (quill == null) return;
     const stompClient = new Client({
