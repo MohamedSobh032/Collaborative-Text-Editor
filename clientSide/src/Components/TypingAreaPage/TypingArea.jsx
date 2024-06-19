@@ -20,8 +20,6 @@ const TOOLBAR_OPTIONS = [
 export default function TypingArea(props) {
   const navigate = useNavigate();
 
-  console.log(props.document);
-
   const [client, setClient] = useState();
   const [quill, setQuill] = useState();
 
@@ -56,7 +54,11 @@ export default function TypingArea(props) {
         stompClient.subscribe(
           `/app/subscribe/${props.document["documentId"]}/${props.user["username"]}`,
           (message) => {
-            // Load
+            const deltas = JSON.parse(message.body);
+            if (deltas.length === 0) return;
+            deltas.forEach((delta) => {
+              quill.updateContents(delta["delta"]);
+            });
           }
         );
         stompClient.subscribe(

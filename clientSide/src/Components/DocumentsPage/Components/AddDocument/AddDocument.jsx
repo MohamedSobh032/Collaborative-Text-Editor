@@ -36,7 +36,6 @@ export default function AddDocument(props) {
       })
       .then((data) => {
         props.toast.success("Document Added Successfully");
-        console.log(data.documentId);
         props.setDocuments((prevDocs) => [
           ...prevDocs,
           {
