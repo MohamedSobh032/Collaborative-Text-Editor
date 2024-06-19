@@ -64,20 +64,11 @@ export default function ChangeProfile(props) {
       <div className="floatingcards">
         <div className="floatingcards-header">
           <h2>Change Profile</h2>
-          <button
-            onClick={() => {
-              props.setChangeProfile(false);
-            }}
-          >
-            X
-          </button>
+          <button onClick={() => { props.setChangeProfile(false); }}>X</button>
         </div>
         <form onSubmit={handleSubmit}>
           <div
-            className={`input-group ${
-              isPasswordFocused || password ? "focused" : ""
-            }`}
-          >
+            className={`input-group ${isPasswordFocused || password ? "focused" : ""}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -98,8 +89,7 @@ export default function ChangeProfile(props) {
             />
           </div>
           <div
-            className={`input-group ${isNameFocused || name ? "focused" : ""}`}
-          >
+            className={`input-group ${isNameFocused || name ? "focused" : ""}`}>
             <input
               type="text"
               id="name"
@@ -112,10 +102,7 @@ export default function ChangeProfile(props) {
             <label htmlFor="name">New Name</label>
           </div>
           <div
-            className={`input-group ${
-              isNewPasswordFocused || newPassword ? "focused" : ""
-            }`}
-          >
+            className={`input-group ${isNewPasswordFocused || newPassword ? "focused" : ""}`}>
             <input
               type="password"
               id="newpassword"
@@ -127,9 +114,7 @@ export default function ChangeProfile(props) {
             />
             <label htmlFor="username">New Password</label>
           </div>
-          <button className="input-buttons" type="submit">
-            Change Settings
-          </button>
+          <button className="input-buttons" type="submit">Change Settings</button>
         </form>
       </div>
     </div>

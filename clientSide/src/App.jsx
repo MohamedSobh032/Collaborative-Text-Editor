@@ -22,26 +22,8 @@ function App() {
           <Route path="/" element={<Login setUser={ChangeCommonUser} />} />
           <Route path="/Login" element={<Login setUser={ChangeCommonUser} />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route
-            path="/Documents"
-            element={
-              <Documents
-                setUser={ChangeCommonUser}
-                setDocument={ChangeDocument}
-                user={user}
-              />
-            }
-          />
-          <Route
-            path={`/TypingArea/${document.documentId}`}
-            element={
-              <TypingArea
-                user={user}
-                document={document}
-                setUser={ChangeCommonUser}
-              />
-            }
-          />
+          <Route path="/Documents" element={<Documents setUser={ChangeCommonUser} setDocument={ChangeDocument} user={user} />} />
+          <Route path={`/TypingArea/${document.documentId}`} element={<TypingArea user={user} document={document} setUser={ChangeCommonUser} />} />
         </Routes>
       </Router>
     </>

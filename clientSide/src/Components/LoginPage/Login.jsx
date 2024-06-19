@@ -75,11 +75,7 @@ export default function Login({ setUser }) {
         <h1>Sign in</h1>
         <p>Keep it Professional with Collaborative Editing</p>
         <form onSubmit={handleSubmit}>
-          <div
-            className={`input-group ${
-              isUsernameFocused || username ? "focused" : ""
-            }`}
-          >
+          <div className={`input-group ${isUsernameFocused || username ? "focused" : ""}`}>
             <input
               type="text"
               id="username"
@@ -92,11 +88,7 @@ export default function Login({ setUser }) {
             />
             <label htmlFor="username">Username</label>
           </div>
-          <div
-            className={`input-group ${
-              isPasswordFocused || password ? "focused" : ""
-            }`}
-          >
+          <div className={`input-group ${isPasswordFocused || password ? "focused" : ""}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -116,13 +108,9 @@ export default function Login({ setUser }) {
               title={showPassword ? "Hide Password" : "Show Password"}
             />
           </div>
-          <button className="input-buttons" type="submit">
-            Login
-          </button>
+          <button className="input-buttons" type="submit">Login</button>
         </form>
-        <p>
-          New to Our Editor? <Link to="/Signup">Click Here to Sign up</Link>
-        </p>
+        <p>New to Our Editor? <Link to="/Signup">Click Here to Sign up</Link></p>
       </div>
     </div>
   );

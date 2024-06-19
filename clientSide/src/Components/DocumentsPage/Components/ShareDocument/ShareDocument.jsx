@@ -44,20 +44,10 @@ export default function ShareDocument(props) {
     <div className="floatingcards">
       <div className="sharedocument-header">
         <h2>Share Document</h2>
-        <button
-          onClick={() => {
-            props.setShowShare(false);
-          }}
-        >
-          X
-        </button>
+        <button onClick={() => { props.setShowShare(false); }}>X</button>
       </div>
       <form onSubmit={handleSubmit}>
-        <div
-          className={`input-group ${
-            isUsernameFocused || username ? "focused" : ""
-          }`}
-        >
+        <div className={`input-group ${isUsernameFocused || username ? "focused" : ""}`}>
           <input
             type="text"
             id="username"

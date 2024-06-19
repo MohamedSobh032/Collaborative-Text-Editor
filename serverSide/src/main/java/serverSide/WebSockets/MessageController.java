@@ -27,9 +27,7 @@ public class MessageController {
     @MessageMapping("/{id}/sendData")
     @SendTo("/topic/public/{id}")
     public Object sendData(@Payload Map<String, Object> payload, @DestinationVariable String id) {
-        // Retrieve current deltas for the document ID
         List<Object> deltas = documentDeltas.computeIfAbsent(id, k -> new ArrayList<>());
-        // Add new delta to the list
         deltas.add(payload.get("delta"));
         return payload;
     }

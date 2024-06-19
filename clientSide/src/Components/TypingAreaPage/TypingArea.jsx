@@ -34,6 +34,7 @@ export default function TypingArea(props) {
         delta
       }),
     });
+    toast.success("Document Saved Successfully")
   }
 
   useEffect(() => {

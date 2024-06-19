@@ -22,8 +22,7 @@ export default function Signup() {
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [isUsernameFocused, setIsUsernameFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-  const [isConfimPasswordFocused, setIsConfirmPasswordFocused] =
-    useState(false);
+  const [isConfimPasswordFocused, setIsConfirmPasswordFocused] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -70,9 +69,7 @@ export default function Signup() {
         <h1>Sign up</h1>
         <p>Hope you Enjoy Our Application!</p>
         <form onSubmit={handleSubmit}>
-          <div
-            className={`input-group ${isNameFocused || name ? "focused" : ""}`}
-          >
+          <div className={`input-group ${isNameFocused || name ? "focused" : ""}`}>
             <input
               type="text"
               id="name"
@@ -85,11 +82,7 @@ export default function Signup() {
             />
             <label htmlFor="name">Name</label>
           </div>
-          <div
-            className={`input-group ${
-              isUsernameFocused || username ? "focused" : ""
-            }`}
-          >
+          <div className={`input-group ${isUsernameFocused || username ? "focused" : ""}`}>
             <input
               type="text"
               id="username"
@@ -102,11 +95,7 @@ export default function Signup() {
             />
             <label htmlFor="username">Username</label>
           </div>
-          <div
-            className={`input-group ${
-              isPasswordFocused || password ? "focused" : ""
-            }`}
-          >
+          <div className={`input-group ${isPasswordFocused || password ? "focused" : ""}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -126,11 +115,7 @@ export default function Signup() {
               title={showPassword ? "Hide Password" : "Show Password"}
             />
           </div>
-          <div
-            className={`input-group ${
-              isConfimPasswordFocused || confirmPassword ? "focused" : ""
-            }`}
-          >
+          <div className={`input-group ${isConfimPasswordFocused || confirmPassword ? "focused" : ""}`}>
             <input
               type={showConfirmPassword ? "text" : "password"}
               id="confirmpassword"
@@ -150,13 +135,9 @@ export default function Signup() {
               title={showConfirmPassword ? "Hide Password" : "Show Password"}
             />
           </div>
-          <button className="input-buttons" type="submit">
-            Sign up
-          </button>
+          <button className="input-buttons" type="submit">Sign up</button>
         </form>
-        <p>
-          Already Have an Account? <Link to="/Login">Click Here to Login</Link>
-        </p>
+        <p>Already Have an Account? <Link to="/Login">Click Here to Login</Link></p>
       </div>
     </div>
   );

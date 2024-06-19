@@ -49,18 +49,10 @@ export default function RenameDocument(props) {
     <div className="floatingcards">
       <div className="renamedocument-header">
         <h2>Rename Document</h2>
-        <button
-          onClick={() => {
-            props.setShowRename(false);
-          }}
-        >
-          X
-        </button>
+        <button onClick={() => { props.setShowRename(false); }}>X</button>
       </div>
       <form onSubmit={handleSubmit}>
-        <div
-          className={`input-group ${isTitleFocused || title ? "focused" : ""}`}
-        >
+        <div className={`input-group ${isTitleFocused || title ? "focused" : ""}`}>
           <input
             type="text"
             id="title"

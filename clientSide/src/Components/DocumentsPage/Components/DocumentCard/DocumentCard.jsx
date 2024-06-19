@@ -93,32 +93,14 @@ export default function DocumentCard(props) {
               <img
                 src={ThreeDots}
                 alt="Options"
-                className={`documentcard-OptionImg ${
-                  toggleDropdown ? "rotate" : ""
-                }`}
-                onClick={() => {
-                  setToggleDropdown(!toggleDropdown);
-                }}
+                className={`documentcard-OptionImg ${toggleDropdown ? "rotate" : ""}`}
+                onClick={() => { setToggleDropdown(!toggleDropdown); }}
                 title="Options"
               />
               {toggleDropdown && props.role === "OWNER" && (
                 <div className="documentcard-dropdown-content">
-                  <span
-                    onClick={() => {
-                      setShowRename(!showRename);
-                      setToggleDropdown(!toggleDropdown);
-                    }}
-                  >
-                    Rename Document
-                  </span>
-                  <span
-                    onClick={() => {
-                      setShowShare(!showShare);
-                      setToggleDropdown(!toggleDropdown);
-                    }}
-                  >
-                    Share Document
-                  </span>
+                  <span onClick={() => { etShowRename(!showRename); setToggleDropdown(!toggleDropdown); }}>Rename Document</span>
+                  <span onClick={() => { setShowShare(!showShare); setToggleDropdown(!toggleDropdown); }}>Share Document</span>
                   <span onClick={handleDelete}>Delete Document</span>
                 </div>
               )}
@@ -131,9 +113,7 @@ export default function DocumentCard(props) {
           </div>
           <p>{props.description}</p>
         </div>
-        <button className="input-buttons" onClick={handleOpen}>
-          Open Document
-        </button>
+        <button className="input-buttons" onClick={handleOpen}>Open Document</button>
       </div>
       {showRename && (
         <RenameDocument

@@ -29,33 +29,13 @@ export default function Navbar(props) {
         <img className="Navbar-Icon" src={Icon} />
         <h1>Collaborative Text Editor</h1>
         <ul>
-          <li onClick={() => { setShowAdd(!showAdd); }}>
-            Add Document
-          </li>
-          <li
-            onClick={() => {
-              setShowProfile(!showProfile);
-            }}
-          >
-            Profile
-          </li>
+          <li onClick={() => { setShowAdd(!showAdd); }}>Add Document</li>
+          <li onClick={() => { setShowProfile(!showProfile); }}>Profile</li>
           <li>
             Settings
             <div>
-              <span
-                onClick={() => {
-                  setShowChange(!showChange);
-                }}
-              >
-                Change Profile
-              </span>
-              <span
-                onClick={() => {
-                  setShowDelete(!showDelete);
-                }}
-              >
-                Delete My Account
-              </span>
+              <span onClick={() => { setShowChange(!showChange); }}>Change Profile</span>
+              <span onClick={() => { setShowDelete(!showDelete); }}>Delete My Account</span>
             </div>
           </li>
           <li onClick={handleLogout}>Logout</li>

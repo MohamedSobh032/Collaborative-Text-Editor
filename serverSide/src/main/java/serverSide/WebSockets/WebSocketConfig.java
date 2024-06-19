@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker("/topic","/user");
         config.setApplicationDestinationPrefixes("/app");
-        config.setUserDestinationPrefix(("/user"));
+        config.setUserDestinationPrefix("/user");
     }
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {

@@ -52,23 +52,14 @@ export default function DeleteAccount(props) {
       <div className="floatingcards">
         <div className="floatingcards-header">
           <h2>Delete Account</h2>
-          <button
-            onClick={() => {
-              props.setShowDelete(false);
-            }}
-          >
-            X
-          </button>
+          <button onClick={() => { props.setShowDelete(false); }}>X</button>
         </div>
         <p className="deleteaccount-parag">
           Sure you want to delete your account?
         </p>
         <form onSubmit={handleSubmit}>
           <div
-            className={`input-group ${
-              isPasswordFocused || password ? "focused" : ""
-            }`}
-          >
+            className={`input-group ${isPasswordFocused || password ? "focused" : ""}`}>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
@@ -88,9 +79,7 @@ export default function DeleteAccount(props) {
               title={showPassword ? "Hide Password" : "Show Password"}
             />
           </div>
-          <button className="input-buttons" type="submit">
-            Delete Account
-          </button>
+          <button className="input-buttons" type="submit">Delete Account</button>
         </form>
       </div>
     </div>

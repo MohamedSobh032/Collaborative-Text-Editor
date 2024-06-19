@@ -7,13 +7,7 @@ export default function ProfileCard(props) {
       <div className="floatingcards-header">
         <h2>Profile Information</h2>
         <button
-          onClick={() => {
-            props.setShowProfile(false);
-          }}
-          className="profilecard-closebutton"
-        >
-          X
-        </button>
+          onClick={() => { props.setShowProfile(false); }} className="profilecard-closebutton">X</button>
       </div>
       <div className="profilecard-profilefield">
         <label>Name:</label>
