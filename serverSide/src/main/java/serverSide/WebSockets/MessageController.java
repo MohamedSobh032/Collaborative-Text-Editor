@@ -1,5 +1,6 @@
 package serverSide.WebSockets;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -10,22 +11,33 @@ import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
+import serverSide.Database.Documents.DocumentsService;
 
 import java.util.*;
 
 @Controller
 public class MessageController {
 
-    private List<String> users = new ArrayList<>();
-    private Map<String, List<Map<String, Object>>> documentDeltas = new HashMap<>();
+    @Autowired
+    private DocumentsService documentsService;
+
+    private Map<String, String> userDocumentMap = new HashMap<>();
+    private Map<String, List<Object>> documentDeltas = new HashMap<>();
 
     @MessageMapping("/{id}/sendData")
     @SendTo("/topic/public/{id}")
     public Object sendData(@Payload Map<String, Object> payload, @DestinationVariable String id) {
         // Retrieve current deltas for the document ID
-        List<Map<String, Object>> deltas = documentDeltas.computeIfAbsent(id, k -> new ArrayList<>());
+        List<Object> deltas = documentDeltas.computeIfAbsent(id, k -> new ArrayList<>());
         // Add new delta to the list
-        deltas.add(payload);
+        deltas.add(payload.get("delta"));
+        return payload;
+    }
+
+    @MessageMapping("/{id}/saveData")
+    @SendTo("/topic/public/dont'care")
+    public Object saveData(@Payload Map<String, Object> payload, @DestinationVariable String id) {
+        documentsService.updateData(id, payload.get("delta"));
         return payload;
     }
 
@@ -33,12 +45,14 @@ public class MessageController {
     public Object subscribe(@DestinationVariable String docId,
                             @DestinationVariable String userId,
                             SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
-        if (users.contains(userId)) { return "null"; }
-        users.add(userId);
+        if (userDocumentMap.containsKey(userId)) { return null; }
+        userDocumentMap.put(userId, docId);
         Objects.requireNonNull(simpMessageHeaderAccessor.getSessionAttributes()).put("docId", docId);
         Objects.requireNonNull(simpMessageHeaderAccessor.getSessionAttributes()).put("userId", userId);
-
-        return documentDeltas.getOrDefault(docId, new ArrayList<>());
+        Object[] result = new Object[2];
+        result[0] = documentsService.getDocumentById(docId).getData();
+        result[1] = documentDeltas.getOrDefault(docId, null);
+        return result;
     }
 
     @EventListener
@@ -46,6 +60,10 @@ public class MessageController {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String docId = (String) Objects.requireNonNull(headerAccessor.getSessionAttributes()).get("docId");
         String userId = (String) Objects.requireNonNull(headerAccessor.getSessionAttributes()).get("userId");
-        users.remove(userId);
+        userDocumentMap.remove(userId);
+        if (!userDocumentMap.containsValue(docId)) {
+            documentDeltas.remove(docId);
+        }
+
     }
 }

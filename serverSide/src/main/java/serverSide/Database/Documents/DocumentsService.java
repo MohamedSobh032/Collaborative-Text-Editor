@@ -23,6 +23,10 @@ public class DocumentsService {
         return documentsRepository.findById(documentId).orElse(null);
     }
 
+    public Documents getDocumentById(String documentId) {
+        return documentsRepository.findById(documentId);
+    }
+
     public Boolean updateDocument(String documentId, String documentTitle) {
         Documents documents = documentsRepository.findById(documentId);
         if (documents == null) {
@@ -35,9 +39,7 @@ public class DocumentsService {
 
     public Boolean updateData(String documentId, Object Data) {
         Documents documents = documentsRepository.findById(documentId);
-         if (documents == null) {
-             return false;
-         }
+         if (documents == null) { return false; }
          documents.setData(Data);
          documentsRepository.save(documents);
          return true;

@@ -4,9 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Client } from "@stomp/stompjs";
 
-import ExitIcon from "../../assets/logout.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./TypingArea.css";
+import EditorNavbar from "./Navbar/EditorNavbar";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -23,26 +25,14 @@ export default function TypingArea(props) {
   const [client, setClient] = useState();
   const [quill, setQuill] = useState();
 
+
   function saveDocument() {
-    fetch("http://localhost:8080/api/documents/SaveDocument", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    let delta = quill.getContents();
+    client.publish({
+      destination: `/app/${props.document["documentId"]}/saveData`,
       body: JSON.stringify({
-        documentId: props.document["documentId"],
-        documentData: quill.getContents(),
+        delta
       }),
-    }).then((response) => {
-      if (response.status === 404) {
-        alert("cannot save");
-      } else if (response.status === 400) {
-        alert("server error");
-      } else if (response.status === 200) {
-        navigate("/Documents");
-      } else {
-        throw new Error("Unexpected error");
-      }
     });
   }
 
@@ -55,10 +45,12 @@ export default function TypingArea(props) {
           `/app/subscribe/${props.document["documentId"]}/${props.user["username"]}`,
           (message) => {
             const deltas = JSON.parse(message.body);
-            if (deltas.length === 0) return;
-            deltas.forEach((delta) => {
-              quill.updateContents(delta["delta"]);
-            });
+            if (deltas[0] !== null && deltas[0].length !== 0) {
+              quill.updateContents(deltas[0]);
+            }
+            if (deltas[1] !== null && deltas[1].length !== 0) {
+              deltas[1].forEach((delta) => { quill.updateContents(delta) })
+            }
           }
         );
         stompClient.subscribe(
@@ -109,16 +101,20 @@ export default function TypingArea(props) {
       modules: { toolbar: TOOLBAR_OPTIONS },
       readOnly: props.document["role"] === "VIEWER",
     });
-
-    // const customButton = wrapper.querySelector(".ql-exit");
-    // if (customButton) {
-    //   customButton.addEventListener("click", () => {
-    //     navigate("/Documents"); // Navigate to desired route
-    //   });
-    // }
-
     setQuill(q);
-  }, []);
+  }, [props.document]);
 
-  return <div className="container" ref={wrapperRef}></div>;
+  return (
+    <div>
+      <ToastContainer />
+      <div className='TextEditorNavbar-Container'>
+        <EditorNavbar
+          documentTitle={props.document.documentTitle}
+          saveDocument={saveDocument}
+          exit={() => { navigate('/Documents') }}
+        />
+      </div>
+      <div className="container" ref={wrapperRef}></div>
+    </div>
+  );
 }

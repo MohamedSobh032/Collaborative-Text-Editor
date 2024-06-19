@@ -1,0 +1,35 @@
+.EditorNavbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F3F3F3;
+    padding: 10px;
+    color: #06295c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.EditorNavbar-left-section {
+    display: flex;
+    align-items: center;
+}
+
+.EditorNavbar-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.EditorNavbar-middle-section {
+    display: flex;
+    align-items: center;
+}
+
+.EditorNavbar-middle-section img {
+    cursor: pointer;
+}
+
+.EditorNavbar-container h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}

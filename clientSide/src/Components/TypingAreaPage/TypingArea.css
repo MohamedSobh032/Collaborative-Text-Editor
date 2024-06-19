@@ -1,3 +1,4 @@
+
 .container .ql-editor {
     width: 8.5in;
     min-height: 11in;
@@ -43,4 +44,9 @@
     .container .ql-toolbar.ql-snow {
         display: none;
     }
+
+    .TextEditorNavbar-Container {
+        display: none;
+    }
+
 }

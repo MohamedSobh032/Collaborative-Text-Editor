@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,8 +32,8 @@ public class DocumentsController {
     }
 
     @PostMapping("/SaveDocument")
-    public ResponseEntity<String> SaveDocument(@RequestBody Map<String, String> body) {
-        String documentId = body.get("documentId");
+    public ResponseEntity<String> SaveDocument(@RequestBody Map<String, Object> body) {
+        String documentId = (String) body.get("documentId");
         Object Data = body.get("documentData");
         try {
             if (documentsService.updateData(documentId, Data)) {
@@ -43,7 +44,6 @@ public class DocumentsController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
     }
 
 }

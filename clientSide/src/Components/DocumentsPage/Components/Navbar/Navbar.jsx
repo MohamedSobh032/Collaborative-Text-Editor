@@ -29,11 +29,7 @@ export default function Navbar(props) {
         <img className="Navbar-Icon" src={Icon} />
         <h1>Collaborative Text Editor</h1>
         <ul>
-          <li
-            onClick={() => {
-              setShowAdd(!showAdd);
-            }}
-          >
+          <li onClick={() => { setShowAdd(!showAdd); }}>
             Add Document
           </li>
           <li
